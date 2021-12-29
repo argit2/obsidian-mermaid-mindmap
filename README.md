@@ -57,6 +57,10 @@ Will be previewed as
 - Mermaid syntax is overly complicated when you just want a tree-like structure
 - Markmap syntax doesn't allow for connections outside of the outline as of December of 2021
 
+## Known issues
+
+- `()`, `"` and other characters that break mermaid syntax
+
 ## Is the plugin foolproof?
 
 Definitely not

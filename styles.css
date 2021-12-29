@@ -2,3 +2,9 @@
 /* body {
     color: red;
 } */
+
+
+/* avoid the boxes cutting the words when I add linebreaks */
+.block-language-mermaidmindmap {
+    line-height: normal;
+}
