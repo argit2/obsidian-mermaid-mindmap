@@ -13,7 +13,8 @@ Example
   - frame[frame]
 
 bicycle-->wheel
-frame--
+frame-->metal
+```
 
 Will be previewed as
 
