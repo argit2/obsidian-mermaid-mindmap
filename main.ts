@@ -12,6 +12,31 @@ const DEFAULT_SETTINGS: MyPluginSettings = {
 	mySetting: 'default'
 }
 
+function mermaidMindmapHandler(source: string, el: HTMLElement, ctx : MarkdownPostProcessorContext) : Promise<any> | void {
+	const mermaidText = textToMermaid(source);
+	console.log(mermaidText);
+	const mermaid = mermaidAPI.initialize({
+		"theme" : "dark"
+	});
+	try {
+
+		const graph = mermaidAPI.render('graphDiv', mermaidText, (svgCode, bindFunctions) => {
+			el.innerHTML = svgCode;
+			
+			const svg = el.querySelector('svg');
+			const viewBoxWidth = svg.viewBox.baseVal.width;
+			// set width because otherwise it's 100% and that's too small if graph is too big
+			const desiredWidth = viewBoxWidth;
+			svg.setAttr("width", `${desiredWidth}px`);
+			
+		})
+	}
+	catch {
+		el.innerHTML = 'Mermaid mindmap error'
+	}
+	return null;
+}
+
 export default class MyPlugin extends Plugin {
 	settings: MyPluginSettings;
 
@@ -39,32 +64,16 @@ export default class MyPlugin extends Plugin {
 		// 	}
 		// });
 		// This adds an editor command that can perform some operation on the current editor instance
-		this.addCommand({
-			id: 'sample-editor-command',
-			name: 'Sample editor command',
-			editorCallback: (editor: Editor, view: MarkdownView) => {
-				const selection = editor.getSelection();
-				const mermaid = textToMermaid(selection);
-				// editor.replaceSelection('Sample Editor Command');
-			}
-		});
-
-		function mermaidMindmapHandler(source: string, el: HTMLElement, ctx : MarkdownPostProcessorContext) : Promise<any> | void {
-			const mermaidText = textToMermaid(source);
-			// console.log(mermaidText, el, ctx);
-			const promise = new Promise((resolve, reject) => {
-				const mermaid = mermaidAPI.initialize({
-					"theme" : "dark"
-				});
-				// console.log(mermaid);
-				const graph = mermaidAPI.render('graphDiv', mermaidText, (svgCode, bindFunctions) => {
-					el.innerHTML = svgCode;
-					resolve(el);
-				})
-			})
-			// return promise;
-			return null;
-		}
+		// this.addCommand({
+		// 	id: 'sample-editor-command',
+		// 	name: 'Sample editor command',
+		// 	editorCallback: (editor: Editor, view: MarkdownView) => {
+		// 		const selection = editor.getSelection();
+		// 		const mermaid = textToMermaid(selection);
+		// 		console.log(mermaid)
+		// 		// editor.replaceSelection('Sample Editor Command');
+		// 	}
+		// });
 
 		this.registerMarkdownCodeBlockProcessor('mermaidmindmap', mermaidMindmapHandler);
 		// This adds a complex command that can check whether the current state of the app allows execution of the command
