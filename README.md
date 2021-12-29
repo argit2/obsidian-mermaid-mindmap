@@ -28,6 +28,7 @@ Will be previewed as
 ## Is the plugin foolproof?
 
 Definitely not
+
 I created mermaid-mindmap.js on a whim and decided to turn it into an obsidian plugin. I didn't check all corner cases and I intend to do so when the plugin breaks.
 
 Feel free to submit a pull request
