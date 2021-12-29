@@ -7,6 +7,32 @@ This plugin previews an outline as a mermaid graph, and allows connections betwe
 
 Example
 
+~~~
+```mermaidmindmap
+- bad odor[odor]
+	- substances such as thioalcohol[substances]
+		- decomposing[decomposing]
+			- aminoacids[aminoacids]
+				- apocrine sweat[sweat]
+					- apocrine glands
+			- enzime[enzime]
+				- bacteria[bacteria]
+					- shirt holding bacteria
+					- clogged pores[clogged pores]
+			- temperature[temperature]
+				- physical activity
+				- heavy clothing
+				- weather
+
+sweat-->temperature
+```
+~~~
+
+Will be previewed as
+
+![preview](./media/2021-12-29-11-36-01.png)
+
+~~~
 ```mermaidmindmap
 - car
   - wheel[wheel]
@@ -20,6 +46,7 @@ Example
 bicycle-->wheel
 frame-->metal
 ```
+~~~
 
 Will be previewed as
 
