@@ -1,3 +1,7 @@
+Instructions
+- run 'npm install'
+- move the folder to .obsidian/plugins
+
 This plugin previews an outline as a mermaid graph, and allows connections between elements.
 
 Example
